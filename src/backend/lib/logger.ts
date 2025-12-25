@@ -27,25 +27,23 @@ const logFormat = winston.format.combine(
 // Configure transports based on environment
 const transports: winston.transport[] = [];
 
+// Always log to console (needed for Railway/cloud platforms)
+transports.push(
+  new winston.transports.Console({
+    format: winston.format.combine(winston.format.colorize(), logFormat),
+  }),
+);
+
 if (isProduction) {
-  // Production: Write to files
+  // Production: Also write to files
   transports.push(
-    // All logs go to combined.log
     new winston.transports.File({
       filename: path.join(process.cwd(), "logs", "combined.log"),
       level: "info",
     }),
-    // Errors go to error.log
     new winston.transports.File({
       filename: path.join(process.cwd(), "logs", "error.log"),
       level: "error",
-    }),
-  );
-} else {
-  // Development: Console only (current behavior)
-  transports.push(
-    new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize(), logFormat),
     }),
   );
 }
