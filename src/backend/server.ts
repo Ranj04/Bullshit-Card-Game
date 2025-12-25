@@ -31,6 +31,9 @@ if (isDevelopment) {
 const app = express();
 const httpServer = createServer(app);
 
+// Trust proxy for secure cookies behind Railway/load balancers
+app.set("trust proxy", 1);
+
 app.set("io", initSockets(httpServer));
 
 const PORT = process.env.PORT || 3000;
