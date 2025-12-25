@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
     publicDir: "public",
 
     build: {
-      // Dev outputs to src/backend/public, production to dist/public
-      outDir: isDev ? "src/backend/public" : "dist/public",
+      // Dev outputs to src/backend/public, production to dist/backend/public
+      outDir: isDev ? "src/backend/public" : "dist/backend/public",
       emptyOutDir: isDev, // Clear dev folder on rebuild, but not prod (backend also outputs there)
       rollupOptions: {
         input,

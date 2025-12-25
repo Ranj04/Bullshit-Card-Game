@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const srcDir = path.join(__dirname, '..', 'src', 'backend', 'views');
-const destDir = path.join(__dirname, '..', 'dist', 'views');
+const destDir = path.join(__dirname, '..', 'dist', 'backend', 'views');
 
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
